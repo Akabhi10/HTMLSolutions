@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Lab — Gallery</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #fafafa;
+    }
+    header {
+        background: url('header-bg.jpg') no-repeat center center/cover;
+        padding: 20px;
+        color: white;
+    }
+    h1 {
+        margin: 0;
+    }
+    main {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+    }
+    figure {
+        margin: 0;
+        text-align: center;
+        font-size: 14px;
+    }
+    img, picture, svg {
+        max-width: 100%;
+        border-radius: 5px;
+    }
+    aside {
+        background: #fff;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    hr {
+        margin: 20px 0;
+    }
+    footer {
+        padding: 15px;
+        text-align: center;
+    }
+    button {
+        padding: 8px 15px;
+        border: 1px solid #333;
+        background: white;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Image Lab — Gallery</h1>
+    <p>Practice with &lt;img&gt;, srcset, &lt;picture&gt;, SVG, and accessibility</p>
+</header>
+
+<main>
+    <section>
+        <h2>Responsive Image Gallery</h2>
+        <div class="gallery">
+            <!-- Basmati Rice -->
+            <figure>
+                <img src="https://m.media-amazon.com/images/I/91MZComV1xL.jpg" alt="Basmati rice in a 5 kg bag" loading="lazy">
+                <figcaption>Basmati rice — 5 kg bag.</figcaption>
+            </figure>
+
+            <!-- Assorted Snacks Box -->
+            <figure>
+                <picture>
+                    <source srcset="snacks.webp" type="image/webp">
+                    <img src="https://www.kroger.com/product/images/large/front/0086368600214" 
+     alt="Assorted snacks in a box" 
+     width="300">
+                    
+                </picture>
+                <figcaption>Assorted Snacks Box (WebP served when supported).</figcaption>
+            </figure>
+
+            <!-- Delivery Truck SVG -->
+            <figure>
+                <svg width="120" height="80" role="img" aria-labelledby="truckTitle truckDesc">
+                    <title id="truckTitle">Delivery truck</title>
+                    <desc id="truckDesc">Simple delivery truck icon</desc>
+                    <rect x="20" y="30" width="80" height="30" fill="#00BFFF" stroke="black"/>
+                    <circle cx="35" cy="65" r="8" fill="black"/>
+                    <circle cx="85" cy="65" r="8" fill="black"/>
+                </svg>
+                <figcaption>Delivery truck (SVG inline with accessible title/desc).</figcaption>
+            </figure>
+
+            <!-- Decorative Divider -->
+            <figure>
+                <img src="divider.png" alt="" role="presentation" loading="lazy">
+                <figcaption>Decorative divider (not read by screen readers).</figcaption>
+            </figure>
+
+            <!-- Image Map -->
+            <figure>
+                <img src="store-map.png" usemap="#storemap" alt="Store layout with rice and snacks aisle" loading="lazy">
+                <map name="storemap">
+                    <area shape="rect" coords="0,0,100,100" href="#rice" alt="Rice aisle">
+                    <area shape="rect" coords="100,0,200,100" href="#snacks" alt="Snacks aisle">
+                </map>
+                <figcaption>Click a section to navigate to that aisle (image map)</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <aside>
+        <h2>Notes</h2>
+        <p>Use <code>srcset</code> and <code>&lt;picture&gt;</code> to reduce bandwidth and serve modern formats.</p>
+        <p>Add <code>loading="lazy"</code> to defer-screen images.</p>
+    </aside>
+</main>
+
+<hr>
+
+<footer>
+    <h3>Submit Lab</h3>
+    <button type="button">Submit Lab</button>
+</footer>
+
+</body>
+</html>
