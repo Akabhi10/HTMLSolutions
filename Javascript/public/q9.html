@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Income Tax Calculator with Multiple Callbacks</title>
+</head>
+<body>
+    <h2>Income Tax Calculator</h2>
+    <label>Name: </label><input type="text" id="name"><br><br>
+    <label>PAN: </label><input type="text" id="pan"><br><br>
+    <label>Annual Income: </label><input type="number" id="income"><br><br>
+    <button onclick="calculateTax(mainCallback)">Calculate Tax</button>
+
+    <h3>Result:</h3>
+    <div id="output"></div>
+
+    <h3>Tax Records:</h3>
+    <pre id="records"></pre>
+
+    <script>
+        
+        let taxRecords = [];
+
+        function calculateTax(callback) {
+            let name = document.getElementById("name").value;
+            let pan = document.getElementById("pan").value;
+            let income = parseFloat(document.getElementById("income").value);
+
+            if (!name || !pan || isNaN(income)) {
+                alert("Please fill all fields correctly!");
+                return;
+            }
+
+            let tax = 0;
+
+            if (income <= 250000) {
+                tax = 0;
+            } else if (income <= 500000) {
+                tax = (income - 250000) * 0.05;
+            } else if (income <= 1000000) {
+                tax = (250000 * 0.05) + (income - 500000) * 0.2;
+            } else {
+                tax = (250000 * 0.05) + (500000 * 0.2) + (income - 1000000) * 0.3;
+            }
+
+            
+            callback({ name, pan, income, tax });
+        }
+
+    
+        function mainCallback(data) {
+            logToConsole(data);
+            displayOnPage(data);
+            saveToRecords(data);
+        }
+
+        function logToConsole(data) {
+            console.log(`Name: ${data.name}, PAN: ${data.pan}, Income: ₹${data.income}, Tax: ₹${data.tax}`);
+        }
+
+        
+        function displayOnPage(data) {
+            document.getElementById("output").innerHTML =
+                `<b>Name:</b> ${data.name}<br>
+                 <b>PAN:</b> ${data.pan}<br>
+                 <b>Annual Income:</b> ₹${data.income}<br>
+                 <b>Tax Payable:</b> ₹${data.tax}`;
+        }
+
+        
+        function saveToRecords(data) {
+            taxRecords.push(data);
+            document.getElementById("records").textContent = JSON.stringify(taxRecords, null, 2);
+        }
+    </script>
+</body>
+</html>

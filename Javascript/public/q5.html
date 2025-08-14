@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Book Store Management</title>
+</head>
+<body>
+<pre id="out"></pre>
+
+<script>
+    const books = [
+        { title: "JavaScript Basics", author: "Anu", price: 450, available: true },
+        { title: "HTML & CSS", author: "Devi", price: 350, available: false }
+    ];
+
+    const output = document.getElementById("out");
+    const log = (msg) => output.textContent += msg + "\n";
+
+    // 1. Display all books
+    log("All Books:");
+    for (let b of books) {
+        log(`Title: ${b.title}, Author: ${b.author}, Price: ${b.price}₹, Available: ${b.available}`);
+    }
+
+    // 2. Display only available books
+    log("Available Books:");
+    for (let b of books) {
+        if (b.available) {
+            log(`Title: ${b.title}, Author: ${b.author}, Price: ${b.price}₹`);
+        }
+    }
+
+    // 3. Add a new book
+    books.push({ title: "Node.js Guide", author: "Ravi", price: 400, available: true });
+    log("After Adding:");
+    log(books.map(b => b.title).join(", "));
+
+    // 4. Update price of a specific book
+    const bookToUpdate = books.find(b => b.title === "JavaScript Basics");
+    if (bookToUpdate) {
+        bookToUpdate.price = 500;
+    }
+    log("After Price Update:");
+    log(`JavaScript Basics - ${bookToUpdate.price}₹`);
+
+    // 5. Delete a book
+    const indexToRemove = books.findIndex(b => b.title === "JavaScript Basics");
+    if (indexToRemove !== -1) {
+        books.splice(indexToRemove, 1);
+    }
+    log("After Deletion:");
+    log(books.map(b => b.title).join(", "));
+</script>
+</body>
+</html>

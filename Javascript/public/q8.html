@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Switchboard Control</title>
+</head>
+<body>
+    <h2>Switchboard Control Simulation</h2>
+    <div id="output"></div>
+
+    <script>
+        
+        const buildingName = "Sunshine Apartments";
+
+        let status = "OFF";
+
+        const devices = ["Light", "Fan", "AC"];
+
+        const outputDiv = document.getElementById("output");
+
+        for (var i = 0; i < devices.length; i++) {
+            // Toggle status
+            status = (status === "OFF") ? "ON" : "OFF";
+
+            // 4. Print message
+            outputDiv.innerHTML += `Checking Switch ${i + 1}: ${devices[i]} is ${status} <br>`;
+        }
+
+        outputDiv.innerHTML += `<br>Loop counter after loop: ${i} (var is function-scoped, not block-scoped)<br>`;
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IIFE Product Inventory</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h2>Product Inventory using IIFE</h2>
+
+    <script>
+        let product = (function() {
+            let stock = 0;
+
+            function getStock() {
+                return stock;
+            }
+
+            function addStock(quantity) {
+                stock += quantity;
+                console.log("Stock after adding: " + stock);
+            }
+
+            function sell(quantity) {
+                if (quantity <= stock) {
+                    stock -= quantity;
+                    console.log("Sold " + quantity + " items.");
+                } else {
+                    console.log("Insufficient stock");
+                }
+            }
+
+            return {
+                getStock: getStock,
+                addStock: addStock,
+                sell: sell
+            };
+        })();
+
+        let addQty = parseInt(prompt("Enter quantity to add to stock:"));
+        product.addStock(addQty);
+
+        let sellQty = parseInt(prompt("Enter quantity to sell:"));
+        product.sell(sellQty);
+
+        console.log("Stock remaining: " + product.getStock());
+    </script>
+</body>
+</html>

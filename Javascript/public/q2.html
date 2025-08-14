@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Income Tax Calculator</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Income Tax Calculator</h1>
+
+    <script>
+        // Step 1: Take Inputs
+        let fullName = prompt("Enter Full Name:").trim();
+        let panNumber = prompt("Enter PAN Number (10 characters, uppercase):").trim();
+        let dobInput = prompt("Enter Date of Birth (YYYY-MM-DD):");
+        let annualIncome = parseFloat(prompt("Enter Annual Income (in ₹):"));
+
+        // Step 2: Validate PAN
+        if (panNumber.length !== 10 || panNumber !== panNumber.toUpperCase()) {
+            alert("Invalid PAN format. It must be 10 uppercase characters.");
+        } else {
+            // Step 3: Calculate Age
+            let dob = new Date(dobInput);
+            let today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            let monthDiff = today.getMonth() - dob.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+
+            // Step 4: Calculate Tax
+            let tax = 0;
+            if (annualIncome <= 250000) {
+                tax = 0;
+            } else if (annualIncome <= 500000) {
+                tax = 0.05 * annualIncome;
+            } else if (annualIncome <= 1000000) {
+                tax = 0.20 * annualIncome;
+            } else {
+                tax = 0.30 * annualIncome;
+            }
+
+            tax = Math.round(tax); // nearest rupee
+
+            // Step 5: Display Output
+            alert(
+                "Name: " + fullName.toUpperCase() + "\n" +
+                "PAN: " + panNumber + "\n" +
+                "Age: " + age + " years\n" +
+                "Annual Income: ₹" + annualIncome + "\n" +
+                "Calculated Tax: ₹" + tax
+            );
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sports Team Player Details</title>
+</head>
+<body>
+    <h2>Sports Team Player Details</h2>
+    <div id="output"></div>
+
+    <script>
+        // First Player Object
+        const player = {
+            name: "Virat Kohli",
+            age: 36,
+            sport: "Cricket",
+            stats: {
+                matches: 500,
+                runs: 25000,
+                average: 57.2
+            }
+        };
+
+        // Second Player Object
+        const player2 = {
+            name: "Rohit Sharma",
+            age: 38,
+            sport: "Cricket",
+            stats: {
+                matches: 450,
+                runs: 18000,
+                average: 48.5
+            }
+        };
+
+        // Store both players in an array
+        const players = [player, player2];
+
+        // Output element
+        const outputDiv = document.getElementById("output");
+
+        // Function to print player details
+        function printPlayerDetails({ name, sport, stats: { matches, runs, average } }) {
+            outputDiv.innerHTML += `<p>Player ${name} plays ${sport}.</p>`;
+            outputDiv.innerHTML += `<p>Matches: ${matches} | Runs: ${runs} | Batting Average: ${average}</p><hr>`;
+        }
+
+        // Loop through both players
+        for (const p of players) {
+            printPlayerDetails(p);
+        }
+    </script>
+</body>
+</html>

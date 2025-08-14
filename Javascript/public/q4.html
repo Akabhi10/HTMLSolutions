@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bank Customers</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h2>Bank Customers - Array Operations</h2>
+
+    <script>
+        let n = parseInt(prompt("How many customers to register?"));
+        let customers = [];
+
+        for (let i = 0; i < n; i++) {
+            let name = prompt("Enter customer name " + (i + 1) + ":");
+            customers.push(name);
+        }
+
+        alert("Original Customers: " + customers.join(", "));
+
+        let msg = "Customers using for...of:\n";
+        for (let cname of customers) {
+            msg += cname + "\n";
+        }
+
+        msg += "\nCustomer IDs using for...in:\n";
+        for (let id in customers) {
+            msg += id + "\n";
+        }
+
+        let newCustomerEnd = prompt("Enter a customer name to add at the end:");
+        customers.push(newCustomerEnd);
+        msg += "\nAfter push('" + newCustomerEnd + "'): " + customers.join(", ");
+
+        customers.pop();
+        msg += "\nAfter pop(): " + customers.join(", ");
+
+        let insertName = prompt("Enter a customer name to insert:");
+        let insertPos = parseInt(prompt("Enter position to insert (starting from 0):"));
+        customers.splice(insertPos, 0, insertName);
+        msg += "\nAfter insert '" + insertName + "' at position " + insertPos + ": " + customers.join(", ");
+
+        let delPos = parseInt(prompt("Enter position to delete (starting from 0):"));
+        customers.splice(delPos, 1);
+        msg += "\nAfter delete at position " + delPos + ": " + customers.join(", ");
+
+        msg += "\nFinal Customers: " + customers.join(", ");
+
+        alert(msg);
+    </script>
+</body>
+</html>

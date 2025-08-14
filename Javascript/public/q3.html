@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Equality Checker</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h2>Equality and Inequality Checker</h2>
+
+    <script>
+        var firstVal = prompt("Enter first value:");
+        var secondVal = prompt("Enter second value:");
+
+        var convertedSecond = Number(secondVal);
+
+        var firstType = typeof firstVal;
+        var secondType = typeof convertedSecond;
+
+        var res1 = (firstVal == convertedSecond);
+        var res2 = (firstVal === convertedSecond);
+        var res3 = (firstVal != convertedSecond);
+        var res4 = (firstVal !== convertedSecond);
+
+        var msg = "First Value: " + firstVal + " (" + firstType + ")\n";
+        msg += "Second Value: " + convertedSecond + " (" + secondType + ")\n\n";
+        msg += "Using == : " + res1 + " → Equality ignores type\n";
+        msg += "Using === : " + res2 + " → Strict equality checks type too\n";
+        msg += "Using != : " + res3 + " → Values considered equal so this is false\n";
+        msg += "Using !== : " + res4 + " → Strict inequality true because types differ\n";
+
+        alert(msg);
+    </script>
+</body>
+</html>
